@@ -1,0 +1,92 @@
+@import "./var";
+@import "./framework";
+@import "./vue-transitions";
+@import "el";
+
+@font-face {
+  font-family: SolaimanLipi;
+  src: url("../assets/fonts/SolaimanLipi.ttf") format("truetype");
+  unicode-range: U+0980 - U+09FF;
+}
+
+html {
+  &:lang(bn) {
+    font-family: SolaimanLipi, sans-serif;
+  }
+
+  /*** The fonts below are imported from google, look at the head section of public/index.html ***/
+  &:lang(en) {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  &:lang(ar) {
+    font-family: 'Amiri', serif;
+  }
+}
+
+body {
+  max-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: $bg;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+button, input {
+  font-family: inherit;
+}
+
+
+.popover {
+  padding: 0;
+
+  ul {
+    margin: 0;
+    padding: 8px 0;
+  }
+}
+
+.el-form-item__error {
+  font-size: 14px;
+}
+
+@media all and (min-width: $--md) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #c9c9c9;
+    border-radius: 15px;
+    border: 4px solid rgba(0, 0, 0, 0);
+  }
+}
+
+.link {
+  color: $--color-link;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+
+.highlighted {
+  color: #de00ff !important;
+}
+
+
+.el-menu-item [class^="fas "], .el-menu-item [class^="fa "] {
+  margin-right: 5px;
+  width: 24px;
+  text-align: center;
+  font-size: 18px;
+  vertical-align: middle;
+}

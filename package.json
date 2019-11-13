@@ -1,0 +1,59 @@
+{
+  "name": "chakuri",
+  "version": "0.1.0",
+  "private": true,
+  "sideEffects": [
+    "*.scss",
+    "*.vue"
+  ],
+  "scripts": {
+    "serve": "vue-cli-service serve --port 8085",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-alignment": "^15.0.0",
+    "@ckeditor/ckeditor5-autoformat": "^15.0.0",
+    "@ckeditor/ckeditor5-basic-styles": "^15.0.0",
+    "@ckeditor/ckeditor5-block-quote": "^15.0.0",
+    "@ckeditor/ckeditor5-dev-utils": "^12.0.5",
+    "@ckeditor/ckeditor5-dev-webpack-plugin": "^8.0.5",
+    "@ckeditor/ckeditor5-editor-classic": "^15.0.0",
+    "@ckeditor/ckeditor5-essentials": "^15.0.0",
+    "@ckeditor/ckeditor5-heading": "^15.0.0",
+    "@ckeditor/ckeditor5-image": "^15.0.0",
+    "@ckeditor/ckeditor5-indent": "^15.0.0",
+    "@ckeditor/ckeditor5-link": "^15.0.0",
+    "@ckeditor/ckeditor5-list": "^15.0.0",
+    "@ckeditor/ckeditor5-media-embed": "^15.0.0",
+    "@ckeditor/ckeditor5-paragraph": "^15.0.0",
+    "@ckeditor/ckeditor5-theme-lark": "^15.0.0",
+    "@ckeditor/ckeditor5-upload": "^15.0.0",
+    "@ckeditor/ckeditor5-vue": "^1.0.0",
+    "cropperjs": "^1.5.6",
+    "croppr": "^2.3.1",
+    "element-ui": "^2.6.1",
+    "postcss-loader": "^3.0.0",
+    "raw-loader": "^0.5.1",
+    "socket.io-client": "^2.3.0",
+    "vue": "^2.6.6",
+    "vue-highlight-text": "^1.6.2",
+    "vue-router": "^3.0.1",
+    "vuedraggable": "^2.23.2",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@kazupon/vue-i18n-loader": "^0.3.0",
+    "@vue/cli-plugin-babel": "^3.12.1",
+    "@vue/cli-plugin-pwa": "^3.12.1",
+    "@vue/cli-plugin-unit-jest": "^3.12.1",
+    "@vue/cli-service": "^3.12.1",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.5.21"
+  }
+}

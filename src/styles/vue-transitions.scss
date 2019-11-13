@@ -1,0 +1,21 @@
+$duration: 100ms;
+
+// Fade
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity $duration;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+// Jump
+
+.jump-enter-active, .jump-leave-active {
+  transition: opacity $duration, transform $duration;
+}
+
+.jump-enter, .jump-leave-to {
+  opacity: 0;
+  transform: scale(.9);
+}
