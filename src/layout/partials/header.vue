@@ -1,9 +1,9 @@
 <template>
     <el-header class="flex justify-between header">
         <nav-mobile/>
-        <div class="logo">
-            <router-link to="/">
-                <img :src="logo" :alt="name">
+        <div class="logo flex align-center">
+            <router-link to="/" class="link">
+                KhidmatBD
             </router-link>
         </div>
         <div v-if="$auth.user" class="auth-menu flex align-center">

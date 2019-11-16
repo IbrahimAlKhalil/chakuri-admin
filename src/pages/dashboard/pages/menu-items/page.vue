@@ -5,7 +5,8 @@
                    :decorator="decorate"
                    :create-form="createForm"
                    :edit-form="editForm"
-                   :per-page="25">
+                   :per-page="25"
+                   :query="query">
             <template #tool-btns="{data}">
                 <el-tooltip v-if="unsavedOrder" content="Save Current Order">
                     <el-button icon="fa fa-save" @click="updateOrder(data.items)" circle></el-button>
@@ -110,6 +111,11 @@
                 editForm: form,
 
                 parent: null,
+
+                query: {
+                    parent: id
+                },
+
                 found: true,
                 unsavedOrder: false
             };

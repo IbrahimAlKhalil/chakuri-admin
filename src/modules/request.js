@@ -117,7 +117,7 @@ export class Fetcher {
 
             let body = this.options.body;
 
-            if (body && Object.getPrototypeOf(body) === Object.prototype) {
+            if (body && body.constructor === Object) {
                 body = Fetcher.convertToFormData(body);
             }
 
@@ -179,6 +179,11 @@ export class Fetcher {
 
             if (typeof value === 'object') {
                 this.objectToFormData(value, formData, !parent ? key : `${parent}[${key}]`);
+                continue;
+            }
+
+            if (!parent) {
+                formData.append(key, value);
                 continue;
             }
 

@@ -1,6 +1,6 @@
 <template>
     <router-link :class="`el-menu-item flex align-center ${!item.seen?' unseen':''}`"
-                 :to="item.link" @click.native="seen(item)">
+                 :to="link" @click.native="seen(item)">
         <div class="pic" v-if="item.pic" :style="style">
         </div>
 
@@ -39,6 +39,15 @@
                     background: `url(${this.$fileUrl(this.$props.item.pic)}) no-repeat center`,
                     backgroundSize: 'cover'
                 };
+            },
+
+            link() {
+                const link = JSON.parse(this.$props.item.link);
+
+                switch (link.type) {
+                    case 'new-job':
+                        return `/dashboard/job-requests#j${link.id}`;
+                }
             }
         },
 
@@ -46,7 +55,7 @@
             seen(item) {
                 this.$store.dispatch('notification/seen', item);
             }
-        }
+        },
     };
 </script>
 

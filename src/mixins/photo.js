@@ -13,11 +13,15 @@ export default {
             this.photo = null;
             this.$refs[this.reset].reset();
 
+            const body = new FormData;
+
+            body.append('photo', photo);
+
 
             // Request to server
             const response = await this.$fetch('update-photo', {
                 method: 'POST',
-                body: {photo}
+                body
             }).response();
 
             this.loading = false;

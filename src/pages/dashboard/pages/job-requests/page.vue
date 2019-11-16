@@ -108,19 +108,31 @@
                 this.$set(item, type === 'approve' ? 'approving' : 'rejecting', true);
 
 
-                await this.$fetch('dashboard/job-requests', {
+                const response = await this.$fetch('dashboard/job-requests', {
                     method: 'POST',
                     body
                 }).response();
 
                 const {items, total} = this.exposed;
 
-                items.splice(items.indexOf(item), 1);
-                this.exposed.total = total - 1;
+                if (response.status === 200 || response.status === 204) {
+                    items.splice(items.indexOf(item), 1);
+                    this.exposed.total = total - 1;
+
+                    return this.$notify({
+                        title: type === 'approve' ? 'Approved' : 'Rejected',
+                        type: 'success'
+                    });
+
+
+                }
+
+                item.loading = false;
+                item[type === 'approve' ? 'approving' : 'rejecting'] = false;
 
                 this.$notify({
-                    title: type === 'approve' ? 'Approved' : 'Rejected',
-                    type: 'success'
+                    title: 'Sorry, something went wrong',
+                    type: 'error'
                 });
             }
         },

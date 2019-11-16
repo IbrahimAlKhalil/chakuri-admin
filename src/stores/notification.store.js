@@ -79,13 +79,6 @@ export default {
                 // Join socket.io rooms
                 // Listen for notifications
                 socket().on('n', payload => {
-                    const link = JSON.parse(payload.link);
-
-                    switch (link.type) {
-                        case 'new-job':
-                            payload.link = `/dashboard/job-requests/${link.id}`;
-                    }
-
                     commit('addNotification', payload);
                     commit('unreadCount', {
                         rootState,

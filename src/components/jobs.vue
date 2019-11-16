@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <div v-for="(job, index) in jobs" :key="index" :class="job.focus?'focused':''">
+        <div v-for="(job, index) in jobs" :key="index" :class="job.focus?'focused':''" :id="`j${job.id}`">
             <router-link class="job" :to="`/jobs/${job.id}`">
                 <div class="flex">
                     <div v-if="job.logo">
@@ -38,9 +38,11 @@
 </template>
 
 <script>
+    import hash from '@/mixins/hash';
 
     export default {
         props: ['jobs', 'keyword', 'show-deadline'],
+        mixins: [hash],
         methods: {
             experience(job) {
                 const enToBn = this.$enToBn;
