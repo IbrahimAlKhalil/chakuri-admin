@@ -12,6 +12,7 @@ export default function () {
     }
 
     socket = io.connect(url.host, {
+        path: process.env.NODE_ENV === 'development' ? 'socket.io' : 'socketio',
         query: {
             'token': retrieveToken()
         }
