@@ -30,7 +30,7 @@ export default {
         items: [],
         page: 0,
         perPage: 6,
-        loading: false
+        loading: false,
     },
 
     mutations: {
@@ -56,7 +56,7 @@ export default {
             let menuItem = resolveNotificationMenuItem(rootState);
 
             state.unread = menuItem.badge = count;
-        }
+        },
     },
 
     actions: {
@@ -82,13 +82,13 @@ export default {
                     commit('addNotification', payload);
                     commit('unreadCount', {
                         rootState,
-                        count: state.unread + 1
+                        count: state.unread + 1,
                     });
                 });
             });
         },
 
-        async loadUnreadCount({state, commit, rootState}) {
+        async loadUnreadCount({commit, rootState}) {
             // Load notifications
 
             const response = await request('notifications/unread-count').response();
@@ -99,7 +99,7 @@ export default {
 
             commit('unreadCount', {
                 rootState,
-                count: parseInt(response.text)
+                count: parseInt(response.text),
             });
         },
 
@@ -131,8 +131,8 @@ export default {
             item.seen = true;
 
             await request('notifications/' + item.id, {
-                method: 'POST'
+                method: 'POST',
             }).response();
-        }
-    }
+        },
+    },
 };
