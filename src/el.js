@@ -16,3 +16,4 @@ export elRadioButton from 'element-ui/packages/radio/src/radio';
 export elBadge from 'element-ui/packages/badge/src/main';
 export elPagination from 'element-ui/lib/pagination';
 export elSwitch from 'element-ui/packages/switch/src/component';
+export elRadioGroup from 'element-ui/packages/radio-group/index';

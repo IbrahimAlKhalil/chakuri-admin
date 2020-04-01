@@ -6,26 +6,26 @@ export default {
         beforeCheck: Function,
 
         createForm: Array,
-        editForm: Array
+        editForm: Array,
     },
 
     data() {
         return {
             createDialog: false,
             editDialog: false,
-            editItem: null
+            editItem: null,
         };
     },
 
     methods: {
         confirm() {
             return new Promise(resolve => {
-                messageBox.confirm(`Are you sure you want to do this? This action may <strong>Chane some states of the item/s you selected</strong>. Continue?`, 'Warning', {
+                messageBox.confirm(`Are you sure you want to do this? This action may <strong>alter some states of the item/s you selected</strong>. Continue?`, 'Warning', {
                     confirmButtonText: 'OK',
                     cancelButtonText: 'Cancel',
                     type: 'warning',
                     center: true,
-                    dangerouslyUseHTMLString: true
+                    dangerouslyUseHTMLString: true,
                 }).then(() => {
                     resolve(true);
                 }).catch(() => {
@@ -75,7 +75,7 @@ export default {
                 // No item selected
                 return this.$notify({
                     type: 'warning',
-                    message: 'Please select at least one item to be deleted'
+                    message: 'Please select at least one items to be deleted',
                 });
             }
 
@@ -100,14 +100,14 @@ export default {
             if (success && !multiple) {
                 return this.$notify({
                     type: 'success',
-                    message: 'Deleted'
+                    message: 'Deleted',
                 });
             } else if (!multiple) {
                 // Notify
                 this.$notify({
                     type: 'error',
                     message: 'Sorry this item could not be deleted, maybe some other data/functionality are dependent on this item',
-                    duration: 8000
+                    duration: 8000,
                 });
             }
         },
@@ -116,7 +116,7 @@ export default {
             const {items} = this.exposed;
 
             const option = {
-                method: 'DELETE'
+                method: 'DELETE',
             };
 
             const response = await this.$fetch(`${this.endpoint}/${item.id}`, option).response();
@@ -139,7 +139,7 @@ export default {
             if (!toBeRemoved.length) {
                 return this.$notify({
                     type: 'warning',
-                    message: 'Please select at least one item to be deleted'
+                    message: 'Please select at least one item to be deleted',
                 });
             }
 
@@ -152,7 +152,7 @@ export default {
                 // Notify
                 return this.$notify({
                     type: 'success',
-                    message: 'Deleted'
+                    message: 'Deleted',
                 });
             }
 
@@ -161,7 +161,7 @@ export default {
                 return this.$notify({
                     type: 'error',
                     message: 'Sorry these items could not be deleted, because some other data/functionality are dependent on these items',
-                    duration: 8000
+                    duration: 8000,
                 });
             }
 
@@ -170,7 +170,7 @@ export default {
                 this.$notify({
                     type: 'error',
                     message: 'Sorry some of the items could not be deleted, maybe some other data/functionality are dependent on these items',
-                    duration: 8000
+                    duration: 8000,
                 });
             }
         },
@@ -181,14 +181,14 @@ export default {
             // Notify
             this.$notify({
                 type: 'success',
-                message: 'Updated'
+                message: 'Updated',
             });
 
             this.$emit('updated', {
                 value,
                 methods: {
-                    reset: this.reset
-                }
+                    reset: this.reset,
+                },
             });
         },
 
@@ -200,10 +200,10 @@ export default {
             // Notify
             this.$notify({
                 type: 'success',
-                message: 'Created'
+                message: 'Created',
             });
 
             this.$emit('created', item);
-        }
-    }
+        },
+    },
 };

@@ -11,7 +11,7 @@
                                    @click="reset"></el-button>
                     </template>
 
-                    <slot name="inputs"></slot>
+                    <slot name="inputs" v-bind:methods="{reset}"></slot>
                 </div>
 
                 <div class="tools">
@@ -88,19 +88,19 @@
     export default {
         mixins: [crudMixin, toolbarMixin, paginatedMixin],
         components: {
-            dataForm: () => import('./data-form')
+            dataForm: () => import('./data-form'),
         },
 
         props: {
             title: {
                 type: String,
-                required: true
+                required: true,
             },
 
             endpoint: {
                 type: String,
-                required: true
-            }
+                required: true,
+            },
         },
 
         data() {
@@ -129,8 +129,8 @@
                 }
 
                 item.checked = !item.checked;
-            }
-        }
+            },
+        },
     };
 </script>
 

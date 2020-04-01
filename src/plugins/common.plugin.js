@@ -4,6 +4,7 @@ import {enToBn} from '@/modules/en-to-bn';
 import {zeroPrefix} from '@/modules/zero-prefix';
 import config from '@/config';
 import store from '@/store';
+import request from '@modules/request';
 
 
 /***
@@ -22,6 +23,24 @@ export default {
             }
 
             return items.slice(page * perPage - perPage, page * perPage);
+        };
+        const cache = {};
+        Vue.prototype.$setting = function (name) {
+            return new Promise(async (resolve, reject) => {
+                if (cache.hasOwnProperty(name)) {
+                    return resolve(cache[name]);
+                }
+
+                const response = await request(`setting/${name}`).response();
+
+                if (response.status === 404) {
+                    return reject(`Couldn't find Setting ${name}`);
+                }
+
+                cache[name] = response.text;
+
+                resolve(cache[name]);
+            });
         };
 
         const filters = {
@@ -51,12 +70,12 @@ export default {
 
                 return enToBn(`${zeroPrefix(date.getDate())}/${zeroPrefix(date.getMonth() + 1)}/${date.getFullYear()}`);
 
-            }
+            },
         };
 
         for (let key in filters) {
             Vue.prototype['$' + key] = filters[key];
             Vue.filter(key, filters[key]);
         }
-    }
+    },
 };

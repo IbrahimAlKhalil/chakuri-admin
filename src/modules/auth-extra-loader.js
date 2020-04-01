@@ -29,28 +29,40 @@ export default async function (user) {
             icon: 'fa fa-user',
         },
         {
-            title: 'নোটিফিকেশন',
+            title: 'Notifications',
             link: 'notifications',
             icon: 'fa fa-bell',
-            badge: 0
+            badge: 0,
         },
         {
             permission: 'roles',
             title: 'Roles',
             link: 'roles',
-            icon: 'fa fa-shield-alt'
+            icon: 'fa fa-shield-alt',
         },
         {
             permission: 'moderators',
             title: 'Moderators',
             link: 'moderators',
-            icon: 'fas fa-user-shield'
+            icon: 'fas fa-user-shield',
         },
         {
             permission: 'users',
             title: 'Users',
             link: 'users',
             icon: 'fa fa-users',
+        },
+        {
+            permission: 'post-job',
+            title: 'Post Job',
+            link: 'post-job',
+            icon: 'fa fa-file-signature',
+        },
+        {
+            permission: 'post-job',
+            title: 'Jobs',
+            link: 'jobs',
+            icon: 'fa fa-list',
         },
         {
             permission: 'job-requests',
@@ -99,7 +111,7 @@ export default async function (user) {
             title: 'Settings',
             link: 'settings',
             icon: 'fa fa-cog',
-        }
+        },
     ];
     const filtered = items.filter(item => {
         if (permissions.includes('all')) {
