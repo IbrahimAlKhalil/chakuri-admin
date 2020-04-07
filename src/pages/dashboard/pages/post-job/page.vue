@@ -1,6 +1,6 @@
 <template>
     <div class="el-card">
-        <el-form class="el-card__body" :model="models" :rules="rules" @submit.native.prevent="submit">
+        <el-form v-if="loaded" class="el-card__body" :model="models" :rules="rules" @submit.native.prevent="submit">
             <section>
                 <!--                <h3 class="mt-2">কাজ</h3>-->
 
@@ -219,6 +219,7 @@
                 negotiableDisabled: false,
 
                 specialInfoLink: '',
+                loaded: false,
             };
         },
 
@@ -252,6 +253,10 @@
                 const body = new FormData;
 
                 for (const key in models) {
+                    if (typeof models[key] === 'boolean') {
+                        body.append(key, Number(models[key]));
+                        continue;
+                    }
                     body.append(key, models[key]);
                 }
 
@@ -343,18 +348,11 @@
                     institute_name: [required],
                 };
             },
-
-            ageStrings() {
-                const {age_from, age_to} = this.models;
-
-                if (!age_from && !age_to) {
-                    return ['from', 'year'];
-                }
-            },
         },
 
         async created() {
             if (!this.edit) {
+                this.loaded = true;
                 return;
             }
 
@@ -371,7 +369,13 @@
                 this.$set(models, key, job[key]);
             }
 
-            this.loadOptions(`thanas/by-district/${models.district_id}`, thana);
+            ['negotiable', 'special'].forEach(item => {
+                models[item] = !!models[item];
+            });
+
+            await this.loadOptions(`thanas/by-district/${models.district_id}`, thana);
+
+            this.loaded = true;
         },
     };
 </script>

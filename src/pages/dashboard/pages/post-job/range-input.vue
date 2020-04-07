@@ -48,7 +48,7 @@
 
 
             <el-form-item v-else>
-                <el-input type="number" v-model="exact" @input="inputExact" min="0">
+                <el-input type="number" v-model="exact" min="0">
                     <template slot="append">{{append}}</template>
                 </el-input>
             </el-form-item>
@@ -69,9 +69,22 @@
         props: ['name', 'append', 'models', 'label', 'negotiable'],
 
         data() {
+            const {models, name} = this.$props;
+            const fromValue = models[`${name}_from`];
+            const toValue = models[`${name}_to`];
+            let type = 1;
+
+            if (toValue > 0 && !fromValue) {
+                type = 2;
+            } else if (fromValue === toValue && (fromValue && toValue)) {
+                type = 4;
+            } else if (fromValue < toValue) {
+                type = 3;
+            }
+
             return {
-                type: 1,
-                exact: '',
+                type,
+                exactValue: 0,
             };
         },
 
@@ -88,15 +101,24 @@
                         return '';
                 }
             },
+
+            exact: {
+                get() {
+                    const {models, name} = this.$props;
+
+                    return models[`${name}_from`];
+                },
+
+                set(value) {
+                    const {models, name} = this.$props;
+
+                    models[`${name}_from`] = models[`${name}_to`] = value;
+                    this.exactValue = value;
+                },
+            },
         },
 
         methods: {
-            inputExact(evt) {
-                const {models, name} = this.$props;
-
-                models[`${name}_from`] = models[`${name}_to`] = evt;
-            },
-
             rangeTypeChange(evt) {
                 const {name, models} = this.$props;
 
@@ -109,9 +131,16 @@
 
         created() {
             const {name, models} = this.$props;
+            const fromName = `${name}_from`;
+            const toName = `${name}_to`;
 
-            this.$set(models, `${name}_from`, 0);
-            this.$set(models, `${name}_to`, 0);
+            if (!models.hasOwnProperty(fromName)) {
+                this.$set(models, fromName, 0);
+            }
+
+            if (!models.hasOwnProperty(toName)) {
+                this.$set(models, toName, 0);
+            }
         },
     };
 </script>

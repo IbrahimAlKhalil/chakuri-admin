@@ -36,9 +36,9 @@
             <items-count :data="data"/>
 
             <div class="wrapper">
-                <router-link v-for="(item, index) in data.items" :key="index"
-                             class="el-card item is-always-shadow no-underline"
-                             :to="link(item)">
+                <a v-for="(item, index) in data.items" :key="index"
+                   class="el-card item is-always-shadow no-underline"
+                   :href="`https://khidmatbd.com/jobs/${item.id}`" target="_blank">
 
                     <div v-if="item.special" class="el-badge special">
                         <span class="el-badge__content el-badge__content--success">জরুরি নিয়োগ</span>
@@ -72,7 +72,7 @@
                             <strong>Expiry Date:</strong> {{item.deadline | bnDate}}
                         </div>
                     </div>
-                </router-link>
+                </a>
             </div>
         </template>
     </data-list>
@@ -126,10 +126,6 @@
 
             resetList({methods}) {
                 methods.reset();
-            },
-
-            link(item) {
-                return `jobs/${item.id}`;
             },
 
             edit(item) {
