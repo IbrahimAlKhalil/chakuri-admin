@@ -14,7 +14,7 @@
                 </thead>
 
                 <component :is="draggable?'draggable':'tbody'" v-model="data.items" v-bind="dragOptions"
-                           @change="$emit('dragged')">
+                           @change="$emit('dragged', $event)">
                     <tr v-for="(item, index) in data.items" :key="index">
                         <td>
                             <el-checkbox v-model="item.checked" @change="changed"/>
