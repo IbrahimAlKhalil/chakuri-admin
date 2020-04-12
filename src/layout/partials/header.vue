@@ -16,7 +16,7 @@
                 <div>
                     <div class="items">
                         <div class="el-menu">
-                            <notification v-for="(item, index) in notification.items.slice(0, 6)" :key="index"
+                            <notification v-for="(item, index) in notificationItems.slice(0, 6)" :key="index"
                                           :item="item" small/>
                         </div>
 
@@ -64,6 +64,10 @@
             ...mapState({
                 notification: state => state.notification
             }),
+
+            notificationItems() {
+                return this.notification.items.slice(0, 6);
+            }
         },
 
         methods: {
