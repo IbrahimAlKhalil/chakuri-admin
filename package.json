@@ -1,7 +1,9 @@
 {
-  "name": "chakuri",
+  "name": "chakuri-admin",
+  "description": "Employment application for Islamic institutes",
   "version": "0.1.0",
   "private": true,
+  "license": "CC-BY-NC-ND-4.0",
   "sideEffects": [
     "*.scss",
     "*.vue"
